@@ -18,11 +18,11 @@ async function errorHandlingMiddleWare(
     if (!error.statusCode) {
       //to handle implicit error
       response.status(500);
-      responseBody.setStatusCodeCode(500);
+      responseBody.setStatusCode(500);
     } else {
       //to handle explicit error
       response.status(error.statusCode);
-      responseBody.setStatusCodeCode(error.statusCode);
+      responseBody.setStatusCode(error.statusCode);
     }
   }
 
