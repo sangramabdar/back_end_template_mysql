@@ -2,8 +2,9 @@ import Express from "express";
 import cors from "cors";
 
 import initRoutes from "./init-routes";
-import Logger from "../common/helper/logger";
+
 import MysqlDatabase from "./db";
+import { requestLogger } from "../common/helper/logger";
 
 const PORT = process.env.PORT || 8080;
 
@@ -16,7 +17,7 @@ async function initServer() {
       type: ["json"],
     })
   );
-  app.use(Logger);
+  app.use(requestLogger);
   await MysqlDatabase.connectToDatabase();
   await initRoutes();
   app.listen(PORT, () => {

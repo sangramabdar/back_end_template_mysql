@@ -37,7 +37,7 @@ class EmployeeController {
     try {
       const result = await saveEmployeeService(request);
       let responseBody = new ResponseBodyBuilder()
-        .setStatus(201)
+        .setStatusCode(201)
         .setData(result);
       return response.status(201).json(responseBody);
     } catch (error) {

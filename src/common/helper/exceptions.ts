@@ -1,41 +1,49 @@
-class DataBaseConnectionError extends Error {
+class CustomError extends Error {
+  statusCode: number;
+  constructor(message: string, statusCode: number) {
+    super(message);
+    this.statusCode = statusCode;
+  }
+}
+
+class DataBaseConnectionError extends CustomError {
   private static message: string = "db connection error";
   constructor() {
-    super(DataBaseConnectionError.message);
+    super(DataBaseConnectionError.message, 500);
   }
 }
 
-class NotFound extends Error {
+class NotFound extends CustomError {
   private static message: string = "not found";
   constructor(entity: string) {
-    super(`${entity} ${NotFound.message}`);
+    super(`${entity} ${NotFound.message}`, 404);
   }
 }
 
-class WrongContent extends Error {
+class WrongContent extends CustomError {
   constructor(message: string) {
-    super(message);
+    super(message, 404);
   }
 }
 
-class EmailExists extends Error {
+class EmailExists extends CustomError {
   private static message: string = "email already exists";
   constructor() {
-    super(EmailExists.message);
+    super(EmailExists.message, 404);
   }
 }
 
-class NotRegistered extends Error {
+class NotRegistered extends CustomError {
   private static message: string = "email is not registered";
   constructor() {
-    super(NotRegistered.message);
+    super(NotRegistered.message, 404);
   }
 }
 
-class Unauthorized extends Error {
+class Unauthorized extends CustomError {
   private static message: string = "unauthorized";
   constructor() {
-    super();
+    super(Unauthorized.message, 404);
   }
 }
 
@@ -46,4 +54,5 @@ export {
   EmailExists,
   NotRegistered,
   Unauthorized,
+  CustomError,
 };

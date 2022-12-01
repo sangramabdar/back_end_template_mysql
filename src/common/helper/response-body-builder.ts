@@ -1,7 +1,7 @@
 class ResponseBodyBuilder<T = any> {
   private timeStamp: number = Date.now();
   private error: { message: string } = { message: "" };
-  private status: number = 200;
+  private statusCode: number = 200;
   private data: T | {} = null;
 
   setError(error: string) {
@@ -9,8 +9,8 @@ class ResponseBodyBuilder<T = any> {
     return this;
   }
 
-  setStatus(status: number) {
-    this.status = status;
+  setStatusCode(statusCode: number) {
+    this.statusCode = statusCode;
     return this;
   }
 

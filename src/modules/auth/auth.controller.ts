@@ -13,7 +13,7 @@ class AuthController {
       const accessToken = await generateAccessToken(user);
 
       const responseBody = new ResponseBodyBuilder()
-        .setStatus(200)
+        .setStatusCode(200)
         .setData({ accessToken, id: user.id });
 
       return res.status(200).json(responseBody);
@@ -27,7 +27,7 @@ class AuthController {
       const result = await signUpService(req);
 
       const responseBody = new ResponseBodyBuilder()
-        .setStatus(201)
+        .setStatusCode(201)
         .setData(result);
 
       return res.status(201).json(responseBody);
