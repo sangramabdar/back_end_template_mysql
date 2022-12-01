@@ -12,6 +12,8 @@ async function errorHandlingMiddleWare(
 
   if (typeof error === "string") {
     responseBody.setError(error);
+    response.status(400);
+    responseBody.setStatusCode(400);
   } else {
     responseBody.setError(error.message);
 

@@ -5,6 +5,7 @@ import {
 } from "../../common/schema-validation/schema";
 import { Request, Response } from "express";
 import { trimAllStrings } from "../../common/helper/utils";
+import { BadRequest } from "../../common/helper/exceptions";
 
 interface SignUpDto {
   name: string;
@@ -34,6 +35,7 @@ async function validateLoginDto(req: Request, res: Response, next) {
     req.body = await validateSchema(loginDto, req.body, "complete");
     next();
   } catch (error) {
+    error = new BadRequest(error.message);
     next(error);
   }
 }
@@ -44,6 +46,7 @@ async function validateSignUpDto(req: Request, res: Response, next) {
     req.body = await validateSchema(signUpDto, req.body, "complete");
     next();
   } catch (error) {
+    error = new BadRequest(error.message);
     next(error);
   }
 }

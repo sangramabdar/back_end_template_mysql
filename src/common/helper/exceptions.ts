@@ -6,6 +6,12 @@ class CustomError extends Error {
   }
 }
 
+class BadRequest extends CustomError {
+  constructor(message: string) {
+    super(message, 400);
+  }
+}
+
 class DataBaseConnectionError extends CustomError {
   private static message: string = "db connection error";
   constructor() {
@@ -43,7 +49,7 @@ class NotRegistered extends CustomError {
 class Unauthorized extends CustomError {
   private static message: string = "unauthorized";
   constructor() {
-    super(Unauthorized.message, 404);
+    super(Unauthorized.message, 401);
   }
 }
 
@@ -55,4 +61,5 @@ export {
   NotRegistered,
   Unauthorized,
   CustomError,
+  BadRequest,
 };

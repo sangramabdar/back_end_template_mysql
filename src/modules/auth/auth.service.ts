@@ -1,6 +1,10 @@
 import { hash, compare, genSalt } from "bcryptjs";
 import { Request } from "express";
-import { EmailExists, NotRegistered } from "../../common/helper/exceptions";
+import {
+  CustomError,
+  EmailExists,
+  NotRegistered,
+} from "../../common/helper/exceptions";
 
 import { getUserByEmail, saveUser } from "./auth.repository";
 
@@ -33,7 +37,7 @@ async function loginService(req: Request) {
   const isMatched = await compare(password, user.password);
 
   if (!isMatched) {
-    throw new Error("password is not matched");
+    throw new CustomError("password is not matched", 402);
   }
 
   return {

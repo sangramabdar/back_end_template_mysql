@@ -11,13 +11,15 @@ class MysqlDatabase {
 
   static async connectToDatabase() {
     try {
+      console.log("connecting");
       this.connection = await mysql.createConnection({
         host: "localhost",
-        user: "sammy",
+        user: "sangram",
         port: 3306,
         password: "password",
         database: "assignment",
       });
+
       // this.connection = await mysql.createConnection({
       //   host: this.HOST,
       //   user: this.USER_NAME,

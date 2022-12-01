@@ -16,33 +16,29 @@ const GET_EMPLOYEES_OF_SPECIFIC_USER_QUERY =
 
 async function getAllEmployeesOfSpecificUser(userId: number) {
   const connection = await MysqlDatabase.getConnection();
-  const [users, fields] = await connection.query(
+  const [rows, fields] = await connection.query(
     GET_EMPLOYEES_OF_SPECIFIC_USER_QUERY,
     [userId]
   );
 
-  console.log(users);
-
-  if (users.toString().length === 0) {
+  if (rows.toString().length === 0) {
     return null;
   }
 
-  return users;
+  return rows;
 }
 
 const GET_EMPLOYEE_BY_ID_QUERY = "select * from employees where id = ?";
 
 async function getEmployeeById(id: number) {
   const connection = await MysqlDatabase.getConnection();
-  const [users, fields] = await connection.query(GET_EMPLOYEE_BY_ID_QUERY, [
-    id,
-  ]);
+  const [rows, fields] = await connection.query(GET_EMPLOYEE_BY_ID_QUERY, [id]);
 
-  if (users.toString().length === 0) {
+  if (rows.toString().length === 0) {
     return null;
   }
 
-  return users[0];
+  return rows[0];
 }
 
 const GET_EMPLOYEE_BY_ID_OF_SPECIFIC_USER_QUERY =
@@ -50,16 +46,16 @@ const GET_EMPLOYEE_BY_ID_OF_SPECIFIC_USER_QUERY =
 
 async function getEmployeeByIdOfSpecificUser(id: number, userId: number) {
   const connection = await MysqlDatabase.getConnection();
-  const [users, fields] = await connection.query(
+  const [rows, fields] = await connection.query(
     GET_EMPLOYEE_BY_ID_OF_SPECIFIC_USER_QUERY,
     [id, userId]
   );
 
-  if (users.toString().length === 0) {
+  if (rows.toString().length === 0) {
     return null;
   }
 
-  return users[0];
+  return rows[0];
 }
 
 const SAVE_EMPLOYEE_QUERY =
